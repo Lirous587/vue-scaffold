@@ -1,6 +1,6 @@
 <template>
   <div>
-    <main>
+    <main class="bg-accent">
       default
       <router-view />
     </main>

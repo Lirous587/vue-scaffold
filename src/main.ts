@@ -1,6 +1,6 @@
-import './assets/css/tailwind.css'
-
 import 'li-daisy/dist/style.css'
+
+import './assets/css/tailwind.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
