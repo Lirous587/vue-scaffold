@@ -4,3 +4,14 @@
 :root {
   interpolate-size: allow-keywords;
 }
+
+::details-content {
+  content-visibility: visible;
+  height: 0;
+  transition: .35s;
+  overflow: hidden;
+}
+
+details[open]::details-content {
+  height: auto;
+}

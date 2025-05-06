@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue'
-import DefaultLayout from './layout/DefaultLayout.vue'
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
 

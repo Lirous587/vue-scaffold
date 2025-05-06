@@ -1,9 +1,6 @@
 <template>
   <div
-    class="flex flex-col lg:!flex-row w-full justify-between h-screen"
-    style="
-      background-image: url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp);
-    "
+    class="flex flex-col lg:!flex-row w-full justify-between h-screen bg-[url('/login-bg.jpg')] bg-center bg-cover"
   >
     <div class="h-1/4 lg:h-full lg:w-3/5 flex flex-col justify-center items-center border-r-4">
       <h2 class="text-base-content text-shadow-base-content text-shadow-sm text-2xl font-bold">
@@ -11,12 +8,12 @@
       </h2>
       <AuthFooter class="hidden lg:!block" />
     </div>
-    <div class="flex-1 flex flex-col justify-center items-center">
+    <div class="px-3 flex-1 flex flex-col justify-center items-center">
       <Form
         v-model="form"
         ref="formRef"
         :schema="schema"
-        class="w-2/3 bg-base-200 px-8 py-2 rounded-xl"
+        class="w-full lg:w-2/3 bg-base-200 px-8 py-2 rounded-xl"
         align="vertical"
         label-width="80px"
       >
