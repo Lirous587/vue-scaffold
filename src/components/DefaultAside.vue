@@ -1,10 +1,9 @@
 <template>
-  <aside class="w-[250px] bg-base-200 h-screen">
+  <aside>
     <div class="flex flex-col items-center my-3">
-      <h2 class="text-xl text-primary font-semibold">Li-Email</h2>
+      <h2 class="text-xl text-primary font-semibold">Li-Admin</h2>
       <img class="mask mask-hexagon h-16 w-16" src="/logo.jpg" alt="logo" />
     </div>
-
     <MenuMain :menus="menus" />
   </aside>
 </template>

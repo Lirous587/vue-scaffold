@@ -1,8 +1,8 @@
 <template>
-  <li>
+  <li class="my-1">
     <template v-if="props.children && props.children.length > 0">
       <details @toggle="handleToggle">
-        <summary class="flex items-center py-2 cursor-pointer justify-between after:hidden">
+        <summary class="flex items-center cursor-pointer justify-between after:hidden">
           <div class="flex items-center gap-x-3">
             <component v-if="props.Icon" class="w-5 h-5" :is="props.Icon"></component>
             <span>{{ props.title }}</span>
@@ -25,7 +25,11 @@
       </details>
     </template>
     <template v-else>
-      <router-link :to="props.href" class="flex items-center gap-x-3 py-2">
+      <router-link
+        :to="props.href"
+        class="flex items-center gap-x-3 py-2"
+        :class="route.path === props.href ? 'bg-base-300' : ''"
+      >
         <component v-if="props.Icon" class="w-5 h-5" :is="props.Icon"></component>
         <span>{{ props.title }}</span>
       </router-link>
@@ -37,6 +41,7 @@
 import { ChevronRightIcon } from '@heroicons/vue/24/outline'
 import { type MenuItemProps } from './types'
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 
 const props = defineProps<MenuItemProps>()
 
@@ -45,4 +50,6 @@ const isOpen = ref(false)
 const handleToggle = (event: Event) => {
   isOpen.value = (event.target as HTMLDetailsElement).open
 }
+
+const route = useRoute()
 </script>

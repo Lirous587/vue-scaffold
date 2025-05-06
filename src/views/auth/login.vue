@@ -4,7 +4,7 @@
   >
     <div class="h-1/4 lg:h-full lg:w-3/5 flex flex-col justify-center items-center border-r-4">
       <h2 class="text-base-content text-shadow-base-content text-shadow-sm text-2xl font-bold">
-        Li-Email 邮箱管理系统
+        Li-Admin 后台管理系统
       </h2>
       <AuthFooter class="hidden lg:!block" />
     </div>
