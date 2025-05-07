@@ -9,10 +9,17 @@
         class="fixed left-0 lg:left-[250px] right-[0] top-0 z-10 h-[64px] transition-[left] duration-300 bg-base-100 border-b border-b-base-300"
         :class="headerClass"
       />
+      <DefaultNavTag
+        class="fixed left-0 lg:left-[250px] right-[0] top-[64px] z-9 h-[64px] transition-[left] duration-300 bg-base-100 border-b border-b-base-300"
+        :class="headerClass"
+      />
       <main
-        class="flex-1 pt-[64px] ml-0 lg:ml-[250px] transition-[margin] duration-300 bg-base-300"
+        class="flex-1 pt-[128px] ml-0 lg:ml-[250px] transition-[margin] duration-300 bg-base-300"
         :class="mainClass"
       >
+        <div class="bg-accent h-full">1</div>
+        <div class="bg-accent h-full">2</div>
+        <div class="bg-accent h-full">3</div>
         <router-view />
       </main>
     </div>
@@ -22,6 +29,7 @@
 <script setup lang="ts">
 import DefaultAside from '@/components/Default/DefaultAside.vue'
 import DefaultHeader from '@/components/Default/DefaultHeader.vue'
+import DefaultNavTag from '@/components/Default/NavTag.vue'
 import { useMyExpandStore } from '@/stores/expand'
 import { computed } from 'vue'
 

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "daisyui";
 
 :root {
@@ -8,7 +8,7 @@
 ::details-content {
   content-visibility: visible;
   height: 0;
-  transition: .35s;
+  transition: 0.35s;
   overflow: hidden;
 }
 
@@ -16,13 +16,12 @@ details[open]::details-content {
   height: auto;
 }
 
-
 @plugin "daisyui" {
   themes: all;
 }
 
 @plugin "daisyui/theme" {
-  name: "synthwave";
+  name: 'synthwave';
   default: true;
 }
 
