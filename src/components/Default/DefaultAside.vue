@@ -1,6 +1,6 @@
 <template>
   <aside>
-    <div class="flex flex-col items-center my-3">
+    <div class="flex flex-col items-center my-3 space-y-2">
       <h2 class="text-xl text-primary font-semibold">Li-Admin</h2>
       <img class="mask mask-hexagon h-16 w-16" src="/logo.jpg" alt="logo" />
     </div>
@@ -12,7 +12,7 @@
 import { ref } from 'vue'
 import { BanknotesIcon, ArchiveBoxIcon } from '@heroicons/vue/24/outline'
 import MenuMain from '@/components/Menu/MenuMain.vue'
-import { type Menu } from './Menu/types'
+import { type Menu } from '../Menu/types'
 
 const menus = ref<Menu[]>([
   {

@@ -1,8 +1,8 @@
 <template>
   <div
-    class="flex flex-col lg:!flex-row w-full justify-between h-screen bg-[url('/login-bg.jpg')] bg-center bg-cover"
+    class="flex flex-col lg:!flex-row w-full justify-between h-screen bg-[url('/login-bg.jpg')] bg-center bg-cover login-container"
   >
-    <div class="h-1/4 lg:h-full lg:w-3/5 flex flex-col justify-center items-center border-r-4">
+    <div class="h-1/4 lg:h-full lg:w-3/5 flex flex-col justify-center items-center border-r-2">
       <h2 class="text-base-content text-shadow-base-content text-shadow-sm text-2xl font-bold">
         Li-Admin 后台管理系统
       </h2>
@@ -85,3 +85,28 @@ const handleLogin = () => {
 const handleResetPwd = () => {}
 const handleRegister = () => {}
 </script>
+
+<style scoped>
+.login-container {
+  position: relative;
+}
+.login-container::before {
+  content: '';
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+:root.dark .login-container::before {
+  display: block;
+}
+/* 确保所有内容在遮罩层上方 */
+.login-container > * {
+  position: relative;
+  z-index: 2;
+}
+</style>
