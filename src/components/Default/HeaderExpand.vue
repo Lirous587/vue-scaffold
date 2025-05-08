@@ -24,7 +24,10 @@ const expandStatus = ref<expandStatus>('close')
 
 const handleExpand = () => {
   store.toggleStatus()
-
+  const w = window.innerWidth
+  if (w >= 1024) {
+    return
+  }
   if (store.status === 'expand') {
     drawerRef.value?.open()
     return

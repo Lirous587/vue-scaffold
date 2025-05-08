@@ -1,25 +1,24 @@
 <template>
-  <div class="flex h-screen">
+  <div class="flex overflow-auto">
     <DefaultAside
-      class="fixed w-[250px] h-screen border-r border-r-base-300 translate-x-[-250px] lg:translate-x-[0] transition-[translate] duration-300 overflow-auto"
+      class="fixed w-[250px] h-screen border-r border-r-base-300 translate-x-[-250px] lg:translate-x-[0] transition-[translate] duration-300 overflow-y-auto"
       :class="asideClsss"
     />
-    <div class="flex-1 flex flex-col">
-      <DefaultHeader
-        class="fixed left-0 lg:left-[250px] right-[0] top-0 z-10 h-[64px] transition-[left] duration-300 bg-base-100 border-b border-b-base-300"
+    <div class="flex-1 flex flex-col overflow-y-auto">
+      <div
+        class="fixed left-0 lg:left-[250px] right-[0] top-0 transition-[left] duration-300"
         :class="headerClass"
-      />
-      <DefaultNavTag
-        class="fixed left-0 lg:left-[250px] right-[0] top-[64px] z-9 h-[64px] transition-[left] duration-300 bg-base-100 border-b border-b-base-300"
-        :class="headerClass"
-      />
+      >
+        <DefaultHeader class="z-10 h-[64px] bg-base-100 border-b border-b-base-300" />
+        <DefaultNavTag class="z-10 h-[64px] bg-base-100 border-b border-b-base-300" />
+      </div>
       <main
-        class="flex-1 pt-[128px] ml-0 lg:ml-[250px] transition-[margin] duration-300 bg-base-300"
+        class="pt-[128px] ml-0 lg:ml-[250px] transition-[margin] duration-300 bg-base-100 shrink-0"
         :class="mainClass"
       >
-        <div class="bg-accent h-full">1</div>
-        <div class="bg-accent h-full">2</div>
-        <div class="bg-accent h-full">3</div>
+        <div class="h-screen">1</div>
+        <div class="h-screen">2</div>
+        <div class="h-screen">3</div>
         <router-view />
       </main>
     </div>

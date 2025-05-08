@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center">
+  <div class="flex items-center relative">
     <TransitionGroup
       name="tags"
       tag="div"
@@ -13,16 +13,18 @@
         <span class="font-bold text-sm">
           {{ tag.title }}
         </span>
-        <div
-          class="hover:bg-base-300 btn-ghost rounded-full p-1 transition-[background] duration-200"
-          @click="handleDelete(index)"
-        >
-          <XMarkIcon class="h-4 w-4" :class="tag.noClose ? 'hidden' : ''" />
+        <div @click="handleDelete(index)">
+          <XMarkIcon
+            class="h-6 w-6 btn btn-ghost btn-circle p-0.5"
+            :class="tag.noClose ? 'hidden' : ''"
+          />
         </div>
       </div>
     </TransitionGroup>
-    <div class="mx-4 btn">删除除开当前</div>
-    <div class="mx-4 btn">清除全部</div>
+    <div class="absolute top-1/2 right-0 bottom-0 translate-y-[-50%] bg-base-100 h-10">
+      <div class="mx-4 btn">删除除开当前</div>
+      <div class="mx-4 btn">清除全部</div>
+    </div>
   </div>
 </template>
 
@@ -40,21 +42,21 @@ interface TagType {
 const tags = ref<TagType[]>([
   { title: 'Home', href: '/', noClose: true },
   { title: 'tag1', href: '/tag1' },
-  { title: 'tag2', href: '/tag2' },
-  { title: 'tag1', href: '/tag1' },
-  { title: 'tag2', href: '/tag2' },
-  { title: 'tag1', href: '/tag1' },
-  { title: 'tag2', href: '/tag2' },
-  { title: 'tag1', href: '/tag1' },
-  { title: 'tag2', href: '/tag2' },
-  { title: 'tag1', href: '/tag1' },
-  { title: 'tag2', href: '/tag2' },
-  { title: 'tag1', href: '/tag1' },
-  { title: 'tag2', href: '/tag2' },
-  { title: 'tag1', href: '/tag1' },
-  { title: 'tag2', href: '/tag2' },
-  { title: 'tag1', href: '/tag1' },
-  { title: 'tag2', href: '/tag2' },
+  // { title: 'tag2', href: '/tag2' },
+  // { title: 'tag1', href: '/tag1' },
+  // { title: 'tag2', href: '/tag2' },
+  // { title: 'tag1', href: '/tag1' },
+  // { title: 'tag2', href: '/tag2' },
+  // { title: 'tag1', href: '/tag1' },
+  // { title: 'tag2', href: '/tag2' },
+  // { title: 'tag1', href: '/tag1' },
+  // { title: 'tag2', href: '/tag2' },
+  // { title: 'tag1', href: '/tag1' },
+  // { title: 'tag2', href: '/tag2' },
+  // { title: 'tag1', href: '/tag1' },
+  // { title: 'tag2', href: '/tag2' },
+  // { title: 'tag1', href: '/tag1' },
+  // { title: 'tag2', href: '/tag2' },
 ])
 
 const handleDelete = (index: number) => {
