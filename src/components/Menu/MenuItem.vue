@@ -20,19 +20,22 @@
             :href="child.href"
             :Icon="child.Icon"
             :children="child.children"
+            @change="handleChildChange"
           />
         </ul>
       </details>
     </template>
     <template v-else>
-      <router-link
-        :to="props.href"
-        class="flex items-center gap-x-3 py-2"
+      <div
+        class="py-0"
         :class="route.path === props.href ? 'bg-base-300' : ''"
+        @click="handleClickLink"
       >
-        <component v-if="props.Icon" class="w-5 h-5" :is="props.Icon"></component>
-        <span>{{ props.title }}</span>
-      </router-link>
+        <router-link :to="props.href" class="flex items-center gap-x-3 py-2">
+          <component v-if="props.Icon" class="w-5 h-5" :is="props.Icon"></component>
+          <span>{{ props.title }}</span>
+        </router-link>
+      </div>
     </template>
   </li>
 </template>
@@ -42,6 +45,7 @@ import { ChevronRightIcon } from '@heroicons/vue/24/outline'
 import { type MenuItemProps } from './types'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { type NavItem } from '@/stores/nav'
 
 const props = defineProps<MenuItemProps>()
 
@@ -52,4 +56,16 @@ const handleToggle = (event: Event) => {
 }
 
 const route = useRoute()
+
+const emit = defineEmits<{
+  (e: 'change', item: NavItem): void
+}>()
+
+const handleClickLink = () => {
+  emit('change', { title: props.title, href: props.href })
+}
+
+const handleChildChange = (item: NavItem) => {
+  emit('change', item)
+}
 </script>

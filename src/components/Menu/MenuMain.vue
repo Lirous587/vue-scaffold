@@ -9,8 +9,10 @@
         :href="item.href"
         :Icon="item.Icon"
         :children="item.children"
+        @change="handleItemChange"
       />
     </ul>
+    <!-- <MenuItem title="test" href="test" @change="handleItemChange" /> -->
   </div>
 </template>
 
@@ -18,4 +20,13 @@
 import { type MenuProps } from './types'
 const props = defineProps<MenuProps>()
 import MenuItem from './MenuItem.vue'
+import { type NavItem } from '@/stores/nav'
+
+const emit = defineEmits<{
+  change: [item: NavItem]
+}>()
+
+const handleItemChange = (item: NavItem) => {
+  emit('change', item)
+}
 </script>

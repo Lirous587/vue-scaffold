@@ -5,63 +5,57 @@
       tag="div"
       class="flex-1 flex p-4 items-center overflow-x-auto no-scrollbar"
     >
-      <div
+      <RouterLink
         v-for="(tag, index) in tags"
         :key="tag.title + tag.href"
-        class="flex items-center h-10 gap-x-1 border border-base-300 mx-2 px-2.5 bg-base-200 rounded-md hover:cursor-pointer transition-all duration-150"
+        class="flex items-center btn btn-secondary btn-xs mx-1.5 btn-dash py-4"
+        :to="tag.href"
       >
         <span class="font-bold text-sm">
           {{ tag.title }}
         </span>
         <div @click="handleDelete(index)">
-          <XMarkIcon
-            class="h-6 w-6 btn btn-ghost btn-circle p-0.5"
-            :class="tag.noClose ? 'hidden' : ''"
-          />
+          <XMarkIcon class="h-5 w-5 btn btn-ghost btn-circle p-0.5 hover:text-secondary-content" />
         </div>
-      </div>
+      </RouterLink>
     </TransitionGroup>
-    <div class="absolute top-1/2 right-0 bottom-0 translate-y-[-50%] bg-base-100 h-10">
-      <div class="mx-4 btn">删除除开当前</div>
-      <div class="mx-4 btn">清除全部</div>
+    <div
+      class="absolute top-1/2 right-0 bottom-0 translate-y-[-50%] h-10 w-fit pl-[20px] pr-5 bg-linear-to-r from-transparent from-[10px] to-[20px] to-base-100 flex items-center"
+    >
+      <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-sm m-1 btn-outline btn-primary">
+          <ChevronDoubleDownIcon class="w-5 h-5" />
+        </div>
+
+        <ul
+          tabindex="0"
+          class="dropdown-content menu bg-base-100 rounded-box z-1 w p-2 shadow-sm space-y-1 w-30"
+        >
+          <li><span>关闭其他</span></li>
+          <li><span>关闭全部</span></li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { XMarkIcon } from '@heroicons/vue/24/outline'
+import { useMyNavStore } from '@/stores/nav'
+import { XMarkIcon, ChevronDoubleDownIcon } from '@heroicons/vue/24/outline'
+import { computed } from 'vue'
+import { onMounted } from 'vue'
 
-import { ref } from 'vue'
+const tags = computed(() => store.navs)
 
-interface TagType {
-  title: string
-  href: string
-  noClose?: boolean
-}
-
-const tags = ref<TagType[]>([
-  { title: 'Home', href: '/', noClose: true },
-  { title: 'tag1', href: '/tag1' },
-  // { title: 'tag2', href: '/tag2' },
-  // { title: 'tag1', href: '/tag1' },
-  // { title: 'tag2', href: '/tag2' },
-  // { title: 'tag1', href: '/tag1' },
-  // { title: 'tag2', href: '/tag2' },
-  // { title: 'tag1', href: '/tag1' },
-  // { title: 'tag2', href: '/tag2' },
-  // { title: 'tag1', href: '/tag1' },
-  // { title: 'tag2', href: '/tag2' },
-  // { title: 'tag1', href: '/tag1' },
-  // { title: 'tag2', href: '/tag2' },
-  // { title: 'tag1', href: '/tag1' },
-  // { title: 'tag2', href: '/tag2' },
-  // { title: 'tag1', href: '/tag1' },
-  // { title: 'tag2', href: '/tag2' },
-])
+const store = useMyNavStore()
 
 const handleDelete = (index: number) => {
-  tags.value.splice(index, 1)
+  store.deleteIndex(index)
 }
+
+onMounted(() => {
+  store.init()
+})
 </script>
 
 <style scoped>

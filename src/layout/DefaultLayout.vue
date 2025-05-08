@@ -6,11 +6,11 @@
     />
     <div class="flex-1 flex flex-col overflow-y-auto">
       <div
-        class="fixed left-0 lg:left-[250px] right-[0] top-0 transition-[left] duration-300"
+        class="fixed z-10 left-0 lg:left-[250px] right-[0] top-0 transition-[left] duration-300"
         :class="headerClass"
       >
-        <DefaultHeader class="z-10 h-[64px] bg-base-100 border-b border-b-base-300" />
-        <DefaultNavTag class="z-10 h-[64px] bg-base-100 border-b border-b-base-300" />
+        <DefaultHeader class="h-[64px] bg-base-100 border-b border-b-base-300" />
+        <DefaultNavTag class="h-[64px] bg-base-100 border-b border-b-base-300" />
       </div>
       <main
         class="pt-[128px] ml-0 lg:ml-[250px] transition-[margin] duration-300 bg-base-100 shrink-0"
