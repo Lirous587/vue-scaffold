@@ -31,10 +31,10 @@
         :class="route.path === props.href ? 'bg-base-300' : ''"
         @click="handleClickLink"
       >
-        <router-link :to="props.href" class="flex items-center gap-x-3 py-2">
+        <RouterLink :to="props.href" class="flex items-center gap-x-3 py-2">
           <component v-if="props.Icon" class="w-5 h-5" :is="props.Icon"></component>
           <span>{{ props.title }}</span>
-        </router-link>
+        </RouterLink>
       </div>
     </template>
   </li>
