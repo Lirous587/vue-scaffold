@@ -15,7 +15,7 @@
       <h2 class="text-xl font-bold font-mono">Log in to Li-Admin</h2>
 
       <a
-        :href="`https://github.com/login/oauth/authorize?client_id=${gitub_login_config.client_id}&redirect_uri=${gitub_login_config.redirect_uri}`"
+        :href="githubAuthUrl"
         class="btn btn-primary btn-outline w-[320px] flex items-center justify-center"
       >
         <IconGithub />
@@ -36,4 +36,37 @@
 <script setup lang="ts">
 import { gitub_login_config } from '@/config'
 import IconGithub from '@/components/Icon/github.vue'
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
+
+import { v4 as uuidv4 } from 'uuid'
+import { setOAuthCsrfToken } from '@/utils/auth'
+
+const route = useRoute()
+
+const githubState = computed(() => {
+  // 生成一个随机的csrf token
+  const csrfToken = uuidv4()
+
+  // 将 CSRF token 存储在 sessionStorage 或 cookie 中，以便稍后验证
+  setOAuthCsrfToken(csrfToken)
+
+  const redirectPath = route.query.redirect as string | undefined
+  const stateObject = {
+    csrf: csrfToken,
+    redirect: redirectPath,
+  }
+
+  return encodeURIComponent(JSON.stringify(stateObject))
+})
+
+const githubAuthUrl = computed(() => {
+  const params = new URLSearchParams({
+    client_id: gitub_login_config.client_id,
+    redirect_uri: gitub_login_config.redirect_uri,
+    scope: 'user:email',
+    state: githubState.value,
+  })
+  return `https://github.com/login/oauth/authorize?${params.toString()}`
+})
 </script>

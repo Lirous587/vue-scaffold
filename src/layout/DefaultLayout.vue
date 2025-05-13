@@ -16,9 +16,6 @@
         class="pt-[128px] ml-0 lg:ml-[250px] transition-[margin] duration-300 bg-base-100 shrink-0"
         :class="mainClass"
       >
-        <div class="h-screen">1</div>
-        <div class="h-screen">2</div>
-        <div class="h-screen">3</div>
         <router-view />
       </main>
     </div>
