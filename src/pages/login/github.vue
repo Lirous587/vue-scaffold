@@ -21,6 +21,8 @@ import { onMounted } from 'vue'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
+import { loginPage } from '@/router/const'
+
 const route = useRoute()
 
 const router = useRouter()
@@ -55,7 +57,7 @@ const handleGithubLogin = async () => {
 
     if (!decodedState.csrf || decodedState.csrf !== csrfToken) {
       toast.error('无效的 state 参数，可能存在 CSRF 风险。')
-      router.push({ name: 'loginIndex' })
+      router.push({ name: loginPage })
       return
     }
 
@@ -74,6 +76,7 @@ const handleGithubLogin = async () => {
       })
       .catch((err) => {
         console.log(err)
+        router.push({ name: loginPage })
       })
   } else {
     toast.warning('当前登录方式不安全!')

@@ -4,6 +4,7 @@ import { toast } from 'li-daisy'
 
 import { getAccessToken, removeAccessToken } from './utils/auth'
 import { validateAuth } from './api/user'
+import { indexPage, loginPage } from './router/const'
 
 const publicRoutes = ['loginIndex', 'loginEmail', 'loginGithub']
 
@@ -14,12 +15,12 @@ export function setupRouterGuards(router: Router) {
       await validateAuth().catch((error) => {
         removeAccessToken()
         toast.error(error.msg)
-        next({ name: 'loginIndex' })
+        next({ name: loginPage })
       })
 
       if (to.name === 'loginIndex' || to.name === 'loginGithub' || to.name === 'loginEmail') {
         // 如果已登录且目标是登录页，则重定向到首页或之前尝试访问的页面
-        next({ name: 'index' })
+        next({ name: indexPage })
       } else {
         // 正常导航到目标页面
         next()
@@ -30,7 +31,7 @@ export function setupRouterGuards(router: Router) {
         next()
       } else {
         next({
-          name: 'loginIndex',
+          name: loginPage,
           query: { redirect: to.fullPath },
         })
       }
