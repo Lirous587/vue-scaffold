@@ -1,4 +1,4 @@
-import instance from '@/axios'
+import axios from '@/axios'
 
 /**
  * githubLogin API 响应中 data 字段的结构
@@ -16,13 +16,13 @@ export interface GithubLoginData {
 }
 
 export const githubLogin = (code: string): Promise<GithubLoginData> => {
-  return instance.post('/v1/user/login?type=github', {
+  return axios.post('/v1/user/login?type=github', {
     code: code,
   })
 }
 
 export const validateAuth = () => {
-  return instance.post('/v1/user/auth')
+  return axios.post('/v1/user/auth')
 }
 
 export const getMunus = () => {}

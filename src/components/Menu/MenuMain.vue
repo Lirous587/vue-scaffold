@@ -4,15 +4,14 @@
     <ul class="menu w-full">
       <MenuItem
         v-for="item in menu.items"
-        :key="item.title + item.href"
+        :key="item.title + item.path"
         :title="item.title"
-        :href="item.href"
+        :path="item.path"
         :Icon="item.Icon"
         :children="item.children"
         @change="handleItemChange"
       />
     </ul>
-    <!-- <MenuItem title="test" href="test" @change="handleItemChange" /> -->
   </div>
 </template>
 

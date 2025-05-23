@@ -21,7 +21,7 @@ import { onMounted } from 'vue'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-import { loginPage } from '@/router/const'
+import { homePage, loginPage } from '@/router/const'
 
 const route = useRoute()
 
@@ -33,7 +33,7 @@ const stateQueryParam = computed(() => route.query.state as string | undefined)
 
 const togoLoginIndex = () => {
   router.push({
-    name: 'loginIndex',
+    name: homePage,
   })
 }
 
@@ -75,8 +75,8 @@ const handleGithubLogin = async () => {
         router.push(finalRedirectPath)
       })
       .catch((err) => {
-        console.log(err)
         router.push({ name: loginPage })
+        toast.error(err)
       })
   } else {
     toast.warning('当前登录方式不安全!')

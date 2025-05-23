@@ -1,16 +1,29 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import IndexPage from '../pages/index.vue'
+import HomePage from '../pages/index.vue'
 import { setupRouterGuards } from '@/routerGuards'
-import { indexPage, loginByEmail, loginByGithubPage, loginPage } from './const'
-import { githubLogin } from '@/api/user'
+import {
+  homePage,
+  loginByEmailPage,
+  loginByGithubPage,
+  loginPage,
+  authRolePage,
+  authMenuPage,
+  authPermissionPage,
+  authButtonPage,
+} from './const'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: indexPage,
-      component: IndexPage,
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      redirect: { name: homePage },
+    },
+    {
+      path: '/home',
+      name: homePage,
+      component: HomePage,
       meta: { layout: 'DefaultLayout' },
     },
     {
@@ -27,9 +40,33 @@ const router = createRouter({
     },
     {
       path: '/login/email',
-      name: loginByEmail,
+      name: loginByEmailPage,
       component: () => import('../pages/login/email.vue'),
       meta: { layout: 'AuthLayout' },
+    },
+    {
+      path: '/auth/role',
+      name: authRolePage,
+      component: () => import('../pages/auth/role.vue'),
+      meta: { layout: 'DefaultLayout' },
+    },
+    {
+      path: '/auth/menu',
+      name: authMenuPage,
+      component: () => import('../pages/auth/menu.vue'),
+      meta: { layout: 'DefaultLayout' },
+    },
+    {
+      path: '/auth/permission',
+      name: authPermissionPage,
+      component: () => import('../pages/auth/permission.vue'),
+      meta: { layout: 'DefaultLayout' },
+    },
+    {
+      path: '/auth/button',
+      name: authButtonPage,
+      component: () => import('../pages/auth/button.vue'),
+      meta: { layout: 'DefaultLayout' },
     },
   ],
 })

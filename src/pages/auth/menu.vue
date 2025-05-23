@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 flex gap-x-4">home</div>
+  <div>menu</div>
 </template>
 
 <script setup lang="ts"></script>

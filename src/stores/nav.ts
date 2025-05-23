@@ -2,12 +2,12 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export interface NavItem {
-  href: string
+  path: string
   title: string
 }
 
 export const useMyNavStore = defineStore('myNavsStore', () => {
-  const navs = ref<NavItem[]>([])
+  const navs = ref<NavItem[]>([{ path: '/home', title: '主页' }])
 
   const navsKey = 'navs'
 

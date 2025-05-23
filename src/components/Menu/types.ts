@@ -6,7 +6,7 @@ export interface MenuProps {
 
 export interface MenuItemProps {
   title: string
-  href: string
+  path: string
   Icon?: Component
   children?: MenuItem[]
 }
@@ -18,7 +18,7 @@ export interface Menu {
 
 export interface MenuItem {
   title: string
-  href: string
+  path: string
   Icon?: Component
   children?: MenuItem[]
 }
