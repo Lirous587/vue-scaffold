@@ -1,16 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../pages/index.vue'
 import { setupRouterGuards } from '@/routerGuards'
-import {
-  homePage,
-  loginByEmailPage,
-  loginByGithubPage,
-  loginPage,
-  authRolePage,
-  authMenuPage,
-  authPermissionPage,
-  authButtonPage,
-} from './const'
+import { homePage, loginByEmailPage, loginByGithubPage, loginPage } from './const'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -43,30 +34,6 @@ const router = createRouter({
       name: loginByEmailPage,
       component: () => import('../pages/login/email.vue'),
       meta: { layout: 'AuthLayout' },
-    },
-    {
-      path: '/auth/role',
-      name: authRolePage,
-      component: () => import('../pages/auth/role.vue'),
-      meta: { layout: 'DefaultLayout' },
-    },
-    {
-      path: '/auth/menu',
-      name: authMenuPage,
-      component: () => import('../pages/auth/menu.vue'),
-      meta: { layout: 'DefaultLayout' },
-    },
-    {
-      path: '/auth/permission',
-      name: authPermissionPage,
-      component: () => import('../pages/auth/permission.vue'),
-      meta: { layout: 'DefaultLayout' },
-    },
-    {
-      path: '/auth/button',
-      name: authButtonPage,
-      component: () => import('../pages/auth/button.vue'),
-      meta: { layout: 'DefaultLayout' },
     },
   ],
 })

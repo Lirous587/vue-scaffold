@@ -1,12 +1,7 @@
 import axios from '@/axios'
 
-/**
- * githubLogin API 响应中 data 字段的结构
- */
-
 interface UserPayload {
   id: string
-  login_type: string
 }
 
 export interface GithubLoginData {
@@ -15,8 +10,9 @@ export interface GithubLoginData {
   payload: UserPayload
 }
 
+// api/user/auth/github
 export const githubLogin = (code: string): Promise<GithubLoginData> => {
-  return axios.post('/v1/user/login?type=github', {
+  return axios.post('/v1/user/auth/github', {
     code: code,
   })
 }

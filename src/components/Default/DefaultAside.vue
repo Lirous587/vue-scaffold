@@ -45,15 +45,12 @@ const menus = ref<Menu[]>([
             title: '菜单管理',
             path: '/auth/menu',
             Icon: Bars3Icon,
-            children: [
-              {
-                title: '接口管理',
-                path: '/auth/permission',
-                Icon: FingerPrintIcon,
-              },
-            ],
           },
-
+          {
+            title: '接口管理',
+            path: '/auth/permission',
+            Icon: FingerPrintIcon,
+          },
           {
             title: '按钮管理',
             path: '/auth/button',

@@ -1,5 +1,11 @@
 <template>
-  <ThemeController class="z-20" ref="themeRef" @change="handleThemeChange" :theme="theme" />
+  <ThemeController
+    class="z-20"
+    ref="themeRef"
+    @change="handleThemeChange"
+    :theme="theme"
+    :themes="['dark', 'light']"
+  />
 </template>
 
 <script setup lang="ts">
