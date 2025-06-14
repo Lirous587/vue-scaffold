@@ -70,7 +70,7 @@ const handleGithubLogin = async () => {
     await githubLogin(code.value as string)
       .then((res) => {
         const data = res
-        setAccessToken(data.token)
+        setAccessToken(data.access_token)
         setRefreshToken(data.refresh_token)
         router.push(finalRedirectPath)
       })

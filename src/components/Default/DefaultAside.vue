@@ -1,9 +1,9 @@
 <template>
   <aside>
-    <div class="flex flex-col items-center my-3 space-y-2">
+    <!-- <div class="flex flex-col items-center my-3 space-y-2">
       <h2 class="text-xl text-primary font-semibold">Li-Admin</h2>
       <img class="mask mask-hexagon h-16 w-16" src="/logo.jpg" alt="logo" />
-    </div>
+    </div> -->
     <MenuMain :menus="menus" @change="handleMenuChange" />
   </aside>
 </template>
@@ -24,7 +24,7 @@ import { useMyNavStore, type NavItem } from '@/stores/nav'
 // square-3-stack-3d
 const menus = ref<Menu[]>([
   {
-    title: 'apps',
+    // title: 'apps',
     items: [
       {
         title: '主页',

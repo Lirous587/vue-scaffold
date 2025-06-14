@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 @plugin "daisyui";
-@import "./dark.css";
+@import "./daisyui.css";
 
 
 :root {
