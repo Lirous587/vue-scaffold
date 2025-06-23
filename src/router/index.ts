@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../pages/index.vue'
+import NotFoundPage from '../pages/404.vue'
 import { setupRouterGuards } from '@/routerGuards'
 import { homePage, loginByEmailPage, loginByGithubPage, loginPage } from './const'
 
@@ -8,14 +9,19 @@ const router = createRouter({
   routes: [
     {
       path: '/:pathMatch(.*)*',
+      redirect: { name: 'NotFound' },
+    },
+    {
+      path: '/404',
       name: 'NotFound',
-      redirect: { name: homePage },
+      component: NotFoundPage,
+      meta: { layout: 'NoLayout' },
     },
     {
       path: '/home',
       name: homePage,
       component: HomePage,
-      meta: { layout: 'DefaultLayout' },
+      meta: { layout: 'AdminLayout' },
     },
     {
       path: '/login',

@@ -15,13 +15,7 @@ export function setupRouterGuards(router: Router) {
 
     // 检查是否是 404 页面（通配符路由匹配的情况）
     if (to.name === 'NotFound') {
-      if (token) {
-        // 已登录用户重定向到首页
-        next({ name: homePage })
-      } else {
-        // 未登录用户重定向到登录页
-        next({ name: loginPage })
-      }
+      next()
       return
     }
 

@@ -9,14 +9,15 @@
         class="fixed w-[250px] h-full border-r border-r-base-300 translate-x-[-250px] lg:translate-x-[0] transition-[translate] duration-300 overflow-y-auto"
         :class="asideClsss"
       />
-      <!-- <div class="flex-1 flex flex-col overflow-y-auto">
+      <div class="flex-1 flex flex-col overflow-y-auto">
         <main
-          class="pt-[64px] ml-0 lg:ml-[250px] transition-[margin] duration-300 bg-base-100 shrink-0"
+          class="ml-0 lg:ml-[250px] transition-[margin] duration-300 bg-base-100 shrink-0"
           :class="mainClass"
         >
-          <router-view />
+          <DefaultNavTag />
+          <router-view class="p-4" />
         </main>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
@@ -24,7 +25,7 @@
 <script setup lang="ts">
 import DefaultAside from '@/components/Default/DefaultAside.vue'
 import DefaultHeader from '@/components/Default/DefaultHeader.vue'
-// import DefaultNavTag from '@/components/Default/NavTag.vue'
+import DefaultNavTag from '@/components/Default/NavTag.vue'
 import { useMyExpandStore } from '@/stores/expand'
 import { computed } from 'vue'
 
@@ -32,17 +33,9 @@ const store = useMyExpandStore()
 const expandStatus = computed(() => store.status)
 const asideClsss = computed(() => {
   if (expandStatus.value === 'expand') {
-    return 'lg:translate-x-[0]!'
+    return 'lg:!translate-x-[0]'
   } else {
-    return 'lg:translate-x-[-250px]!'
-  }
-})
-
-const headerClass = computed(() => {
-  if (expandStatus.value === 'expand') {
-    return 'lg:left-[250px]!'
-  } else {
-    return 'lg:left-0!'
+    return 'lg:!translate-x-[-250px]'
   }
 })
 
