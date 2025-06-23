@@ -128,10 +128,9 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { homePage } from '@/router/const'
 const router = useRouter()
-const searchQuery = ref('')
 
 const goHome = () => {
-  router.push({ name: homePage }) // 根据你的路由名称调整
+  router.push({ name: homePage })
 }
 
 const goBack = () => {
@@ -139,14 +138,6 @@ const goBack = () => {
     router.go(-1)
   } else {
     goHome()
-  }
-}
-
-const handleSearch = () => {
-  if (searchQuery.value.trim()) {
-    // 这里可以实现搜索逻辑，比如跳转到搜索页面
-    console.log('搜索:', searchQuery.value)
-    // router.push({ name: 'search', query: { q: searchQuery.value } })
   }
 }
 </script>
