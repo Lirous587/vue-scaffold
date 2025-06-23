@@ -126,12 +126,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-
+import { homePage } from '@/router/const'
 const router = useRouter()
 const searchQuery = ref('')
 
 const goHome = () => {
-  router.push({ name: 'homePage' }) // 根据你的路由名称调整
+  router.push({ name: homePage }) // 根据你的路由名称调整
 }
 
 const goBack = () => {
