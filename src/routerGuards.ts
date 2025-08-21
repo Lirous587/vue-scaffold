@@ -19,12 +19,12 @@ export function setupRouterGuards(router: Router) {
       return
     }
 
-    if (token) {
-      await validateAuth().catch((error) => {
-        removeAccessToken()
-        toast.error(error.msg)
-        next({ name: loginPage })
-      })
+    if (true) {
+      // await validateAuth().catch((error) => {
+      //   removeAccessToken()
+      //   toast.error(error.msg)
+      //   next({ name: loginPage })
+      // })
 
       if (to.name === loginPage || to.name === loginByEmailPage || to.name === loginByGithubPage) {
         // 如果已登录且目标是登录页，则重定向到首页或之前尝试访问的页面
