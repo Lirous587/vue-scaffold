@@ -1,8 +1,8 @@
 <template>
-  <ThemeController class="sr-only" />
+  <ThemeSwitch light-theme="light" dark-theme="dark" class="sr-only" />
   <router-view />
 </template>
 
 <script setup lang="ts">
-import ThemeController from '@/components/ThemeController.vue'
+import { ThemeSwitch } from 'li-daisy'
 </script>

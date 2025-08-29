@@ -92,7 +92,10 @@ export function useCrud<
         handleCreate()
       })
       .catch(() => {
-        toast.warning('参数错误')
+        toast.warn({
+          title: '请求失败',
+          message: '参数错误',
+        })
       })
   }
 
@@ -120,14 +123,20 @@ export function useCrud<
         handleUpdate()
       })
       .catch(() => {
-        toast.warning('参数错误')
+        toast.warn({
+          title: '请求失败',
+          message: '参数错误',
+        })
       })
   }
 
   const handleDelete = async (id: number | string) => {
     if (!options.remove) return
     await options.remove(id)
-    toast.success('删除成功')
+    toast.success({
+      title: '请求成功',
+      message: '删除成功',
+    })
     await fetch()
   }
 

@@ -24,8 +24,11 @@ importers:
         specifier: ^5.0.35
         version: 5.0.35
       li-daisy:
-        specifier: ^1.2.1
-        version: 1.2.1(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.10)(jiti@2.4.2)(lightningcss@1.29.2))
+        specifier: ^1.7.2
+        version: 1.7.2(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.10)(jiti@2.4.2)(lightningcss@1.29.2))
+      nprogress:
+        specifier: ^0.2.0
+        version: 0.2.0
       pinia:
         specifier: ^3.0.1
         version: 3.0.2(typescript@5.8.3)(vue@3.5.13(typescript@5.8.3))
@@ -1030,8 +1033,8 @@ packages:
   daisyui@5.0.35:
     resolution: {integrity: sha512-AWi11n/x5++mps55jcwrBf0Lmip1euWY0FYcH/05SFGmoqrU7S7/aIUWaiaeqlJ5EcmEZ/7zEY73aOxMv6hcIg==}
 
-  daisyui@5.0.38:
-    resolution: {integrity: sha512-RsLsdePT/4ZU0N+vWivR/zJyAL9U9EeRtbis3K3VDvewrqY0NOFYBh6ib3n9GfN3Wb+FHwP80ae1qOA6ONWvyw==}
+  daisyui@5.0.50:
+    resolution: {integrity: sha512-c1PweK5RI1C76q58FKvbS4jzgyNJSP6CGTQ+KkZYzADdJoERnOxFoeLfDHmQgxLpjEzlYhFMXCeodQNLCC9bow==}
 
   de-indent@1.0.2:
     resolution: {integrity: sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg==}
@@ -1509,8 +1512,8 @@ packages:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
 
-  li-daisy@1.2.1:
-    resolution: {integrity: sha512-aZumnuQDhTojrOtDgDKF3Lz9s3Z8QFpyfQJx9gBxN2l6o0sSdoblAWhiIm4DUmFwMTR0nsKsnH38Ps1qBesysw==}
+  li-daisy@1.7.2:
+    resolution: {integrity: sha512-RkN8ATUrwlpp37cCUOzRIAk1xNFveQohwbw3j0Dia7vNGyeW/iKr391k3N/klE2B2foS7h86p1k4xA5dwBt/Sg==}
 
   lightningcss-darwin-arm64@1.29.2:
     resolution: {integrity: sha512-cK/eMabSViKn/PG8U/a7aCorpeKLMlK0bQeNHmdb7qUnBkNPnL+oV5DjJUo0kqWsJUapZsM4jCfYItbqBDvlcA==}
@@ -1684,6 +1687,9 @@ packages:
   npm-run-path@6.0.0:
     resolution: {integrity: sha512-9qny7Z9DsQU8Ou39ERsPU4OZQlSTP47ShQzuKZ6PRXpYLtIFgl/DEBYEXKlvcEa+9tHVcK8CF81Y2V72qaZhWA==}
     engines: {node: '>=18'}
+
+  nprogress@0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
 
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
@@ -3145,7 +3151,7 @@ snapshots:
 
   daisyui@5.0.35: {}
 
-  daisyui@5.0.38: {}
+  daisyui@5.0.50: {}
 
   de-indent@1.0.2: {}
 
@@ -3634,11 +3640,11 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
-  li-daisy@1.2.1(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.10)(jiti@2.4.2)(lightningcss@1.29.2)):
+  li-daisy@1.7.2(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.10)(jiti@2.4.2)(lightningcss@1.29.2)):
     dependencies:
       '@heroicons/vue': 2.2.0(vue@3.5.13(typescript@5.8.3))
       '@tailwindcss/vite': 4.1.5(vite@6.3.5(@types/node@22.15.10)(jiti@2.4.2)(lightningcss@1.29.2))
-      daisyui: 5.0.38
+      daisyui: 5.0.50
       pinia: 3.0.2(typescript@5.8.3)(vue@3.5.13(typescript@5.8.3))
       tailwindcss: 4.1.5
       vee-validate: 4.15.0(vue@3.5.13(typescript@5.8.3))
@@ -3779,6 +3785,8 @@ snapshots:
     dependencies:
       path-key: 4.0.0
       unicorn-magic: 0.3.0
+
+  nprogress@0.2.0: {}
 
   nth-check@2.1.1:
     dependencies:

@@ -73,7 +73,10 @@ const handleLogin = () => {
       router.push('/')
       return
     }
-    toast.warning('表单填写错误')
+    toast.warn({
+      title: '请求失败',
+      message: '表单填写错误',
+    })
   })
 }
 

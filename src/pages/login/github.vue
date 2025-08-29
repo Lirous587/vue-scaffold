@@ -39,7 +39,11 @@ const togoLoginIndex = () => {
 
 const handleGithubLogin = async () => {
   if (!code.value) {
-    toast.warning('请正常登录!')
+    toast.warn({
+      title: '非法登录方式',
+      message: '请正常登录!',
+    })
+
     togoLoginIndex()
     return
   }
@@ -56,7 +60,10 @@ const handleGithubLogin = async () => {
     removeOAuthCsrfToken()
 
     if (!decodedState.csrf || decodedState.csrf !== csrfToken) {
-      toast.error('无效的 state 参数，可能存在 CSRF 风险。')
+      toast.error({
+        title: '危险操作',
+        message: '无效的 state 参数，可能存在 CSRF 风险。',
+      })
       router.push({ name: loginPage })
       return
     }
@@ -79,7 +86,10 @@ const handleGithubLogin = async () => {
         toast.error(err)
       })
   } else {
-    toast.warning('当前登录方式不安全!')
+    toast.error({
+      title: '危险操作',
+      message: '当前登录方式不安全!',
+    })
     togoLoginIndex()
     return
   }

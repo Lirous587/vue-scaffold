@@ -1,6 +1,6 @@
 import type { Router } from 'vue-router'
-
-import { toast } from 'li-daisy'
+import type { ErrorResponse } from '@/request/response'
+import NProgress from 'nprogress'
 
 import { getAccessToken, removeAccessToken } from './utils/auth'
 import { validateAuth } from './api/user'
@@ -9,8 +9,11 @@ import { homePage, loginPage, loginByEmailPage, loginByGithubPage } from './rout
 
 const publicRoutes = [loginPage, loginByEmailPage, loginByGithubPage]
 
+let hasValidated = false
 export function setupRouterGuards(router: Router) {
   router.beforeEach(async (to, from, next) => {
+    NProgress.start()
+
     const token = getAccessToken()
 
     // 检查是否是 404 页面（通配符路由匹配的情况）
@@ -20,11 +23,16 @@ export function setupRouterGuards(router: Router) {
     }
 
     if (true) {
-      // await validateAuth().catch((error) => {
-      //   removeAccessToken()
-      //   toast.error(error.msg)
-      //   next({ name: loginPage })
-      // })
+      // if (!hasValidated) {
+      //   await validateAuth()
+      //     .then(() => {
+      //       hasValidated = true
+      //     })
+      //     .catch((error: ErrorResponse) => {
+      //       removeAccessToken()
+      //       next({ name: loginPage })
+      //     })
+      // }
 
       if (to.name === loginPage || to.name === loginByEmailPage || to.name === loginByGithubPage) {
         // 如果已登录且目标是登录页，则重定向到首页或之前尝试访问的页面
@@ -48,7 +56,9 @@ export function setupRouterGuards(router: Router) {
     }
   })
 
-  // router.afterEach((to, from) => {})
+  router.afterEach((to, from) => {
+    NProgress.done()
+  })
 
   router.onError((error) => {
     console.log('Router error', error)

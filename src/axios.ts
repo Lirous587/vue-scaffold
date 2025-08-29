@@ -44,7 +44,10 @@ instance.interceptors.response.use(
   },
   function (error: AxiosError) {
     const data = error.response?.data as ApiResponse
-    toast.error(data.msg)
+    toast.error({
+      title: '网络请求错误',
+      message: data.msg,
+    })
     return Promise.reject(data)
   },
 )
