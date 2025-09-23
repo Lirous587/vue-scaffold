@@ -9,5 +9,22 @@
     "source.fixAll": "explicit"
   },
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // Tab 键设置为 2 个空格
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+
+  // Vue - Official 的正确设置
+  "vue.complete.casing.tags": "pascal",
+  "vue.inlayHints.optionsWrapper": true,
+
+  // Markdown 文件关联
+  "files.associations": {
+    "*.md": "markdown"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  }
 }

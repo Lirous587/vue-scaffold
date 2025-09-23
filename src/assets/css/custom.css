@@ -1,0 +1,8 @@
+:root {
+  scrollbar-gutter: stable;
+  min-width: 768px;
+}
+
+* {
+  scrollbar-width: thin;
+}

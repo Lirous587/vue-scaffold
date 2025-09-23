@@ -18,14 +18,13 @@ export const useMyNavStore = defineStore('myNavsStore', () => {
       if (Array.isArray(parsedNavs)) {
         navs.value = parsedNavs
       } else {
-        console.warn('Stored "navs" is not an array, resetting to empty.')
         localStorage.removeItem(navsKey)
       }
     }
   }
 
   const push = (item: NavItem) => {
-    const exist = navs.value.find((n) => n.title === item.title)
+    const exist = navs.value.find(n => n.title === item.title)
 
     if (!exist) {
       navs.value.push(item)

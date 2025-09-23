@@ -1,67 +1,81 @@
-import { reactive, ref, toRaw, type Reactive, type Ref } from 'vue'
-import type { SuccessResponse, ErrorResponse } from '@/request/response'
-import { toast, type DrawerRef, type FormRef } from 'li-daisy'
+import { computed, reactive, ref, toRaw, type Ref } from 'vue'
+import type { SuccessResponse } from '@/request/response'
+import { Notification, type DrawerRef, type FormRef } from 'li-daisy'
+import { useRoute, useRouter } from 'vue-router'
+import { pickvalidQuery } from '@/utils'
 
 interface CrudOptions<
   FetchRes,
-  Model extends object,
-  Query extends object = any,
-  CreateReq extends object = any,
-  UpdateReq extends { id: number | string } = any,
+  Model extends { id: number },
+  Query extends object = Record<string, any>,
+  CreateReq extends object = Record<string, any>,
+  UpdateReq extends object = Record<string, any>,
 > {
+  modelName?: string
   fetch: (query?: Query) => Promise<SuccessResponse<FetchRes>>
   create?: (data: CreateReq) => Promise<SuccessResponse<Model>>
-  update?: (id: number | string, data: UpdateReq) => Promise<SuccessResponse<Model>>
-  remove?: (id: number | string) => Promise<SuccessResponse<any>>
+  update?: (id: number, data: UpdateReq) => Promise<SuccessResponse<Model>>
+  remove?: (id: number) => Promise<SuccessResponse<any>>
 
   onFetchBefore?: (query: Query) => Query
   onFetchAfter?: (data: FetchRes) => void
 
-  createFormInit: () => CreateReq
-  createDrawerRef: Ref<DrawerRef | undefined>
-  createFormRef: Ref<FormRef | undefined>
-
-  updateFormInit: () => UpdateReq
-  updateDrawerRef: Ref<DrawerRef | undefined>
-  updateFormRef: Ref<FormRef | undefined>
+  initForm: () => Model
+  initQuery: () => Query
+  drawerRef: Ref<DrawerRef | undefined>
+  formRef: Ref<FormRef | undefined>
+  onOpenDrawerForCreateBefore?: () => void
+  OnOpenDrawerForUpdateBefore?: () => void
 }
 
 export function useCrud<
   FetchRes,
-  Model extends object,
-  Query extends object = any,
-  CreateReq extends object = any,
-  UpdateReq extends { id: number | string } = any,
+  Model extends { id: number },
+  Query extends object = Record<string, any>,
+  CreateReq extends object = Record<string, any>,
+  UpdateReq extends object = Record<string, any>,
 >(options: CrudOptions<FetchRes, Model, Query, CreateReq, UpdateReq>) {
   // 必须数据
   const loading = ref(false)
-  const createForm = reactive<CreateReq>(options.createFormInit())
-  const updateForm = reactive<UpdateReq>(options.updateFormInit())
 
-  const query = reactive<Query>({} as Query)
+  const form = reactive<Model>(options.initForm())
+
+  const query = reactive<Query>(options.initQuery())
   const error = ref<string | null>(null)
+
+  const operation = ref<'创建' | '更新'>('创建')
+  const drawerTitle = computed(() =>
+    options.modelName ? operation.value + options.modelName : operation.value + '操作'
+  )
 
   // 常用数据 list pages
   const list = ref<Model[]>([])
   const pages = ref(1)
 
   // 辅助变量
-  const updateId = ref<number | string>(0)
+  const updateId = ref<number>(0)
+
+  const route = useRoute()
+  const router = useRouter()
 
   const fetch = async () => {
     loading.value = true
     error.value = null
     try {
       let q = toRaw(query) as Query
+
+      //  同步 query 到路由
+      router.replace({
+        path: route.path,
+        query: { ...route.query, ...pickvalidQuery(q) },
+      })
+
       // onFetchBefore：请求前参数处理
       if (options.onFetchBefore) q = options.onFetchBefore(q)
       // fetchList：发起请求
       const res = await options.fetch(q)
       // onFetchAfter：请求后数据处理
       options.onFetchAfter?.(res.data)
-    } catch (e: any) {
-      error.value = (e as ErrorResponse)?.message || '请求失败'
-      return null
     } finally {
       loading.value = false
     }
@@ -69,97 +83,100 @@ export function useCrud<
 
   fetch()
 
-  const resetCreateForm = () => {
-    Object.assign(createForm, options.createFormInit())
+  const resetForm = () => {
+    Object.assign(form, options.initForm())
   }
 
-  const openDrawerForCreate = () => {
-    resetCreateForm()
-    options.createDrawerRef.value?.open()
+  const openDrawer = (row?: Model | null, reset: boolean = true) => {
+    // 恢复默认状态
+    updateId.value = 0
+    operation.value = '创建'
+
+    if (reset) resetForm()
+
+    if (row) {
+      // 更新
+      updateId.value = row.id
+      // 设置form等准备update
+      Object.assign(form, row)
+      updateId.value = row.id
+      operation.value = '更新'
+
+      options.OnOpenDrawerForUpdateBefore?.()
+    } else {
+      // 创建
+      options.onOpenDrawerForCreateBefore?.()
+    }
+
+    options.drawerRef.value?.open()
   }
 
   const handleCreate = async () => {
     if (!options.create) return
-    await options.create({ ...createForm } as CreateReq)
+
+    await options.create({ ...form } as CreateReq)
+    Notification.success({
+      title: '创建成功',
+      message: `创建${options.modelName || '记录'}成功`,
+    })
     await fetch()
-    options.createDrawerRef.value?.close()
+    options.drawerRef.value?.close()
   }
 
-  const handleSubmitForCreate = () => {
-    options.createFormRef?.value
+  const handleSubmit = () => {
+    options.formRef.value
       ?.validate()
       .then(() => {
-        handleCreate()
+        updateId.value !== 0 ? handleUpdate() : handleCreate()
       })
       .catch(() => {
-        toast.warn({
+        Notification.warning({
           title: '请求失败',
           message: '参数错误',
         })
       })
-  }
-
-  const openDrawerForUpdate = (row: UpdateReq) => {
-    resetCreateForm()
-    updateId.value = row.id
-    // 设置updateForm
-    Object.assign(updateForm, row)
-    console.log(options.updateDrawerRef.value)
-    options.updateDrawerRef.value?.open()
   }
 
   const handleUpdate = async () => {
     if (!options.update) return
-    await options.update(updateId.value, { ...updateForm } as UpdateReq)
+
+    await options.update(updateId.value, { ...form } as UpdateReq)
+    Notification.success({
+      title: '更新成功',
+      message: `更新${options.modelName || '记录'}成功`,
+    })
     await fetch()
-    options.updateDrawerRef.value?.close()
+    options.drawerRef.value?.close()
   }
 
-  const handleSubmitForUpdate = async () => {
-    options.updateFormRef?.value
-      ?.validate()
-      .then(() => {
-        console.log('update')
-        handleUpdate()
-      })
-      .catch(() => {
-        toast.warn({
-          title: '请求失败',
-          message: '参数错误',
-        })
-      })
-  }
-
-  const handleDelete = async (id: number | string) => {
+  const handleDelete = async (id: number) => {
     if (!options.remove) return
     await options.remove(id)
-    toast.success({
-      title: '请求成功',
-      message: '删除成功',
+    Notification.success({
+      title: '删除成功',
+      message: '成功删除该记录',
     })
     await fetch()
   }
 
   return {
-    loading,
-    createForm,
-    updateForm,
+    form,
     query,
 
+    operation,
+    drawerTitle,
+
+    loading,
     list,
     pages,
 
-    openDrawerForCreate,
-    openDrawerForUpdate,
-
+    resetForm,
+    openDrawer,
+    // handlePagingChange,
     fetch,
     handleCreate,
     handleUpdate,
     handleDelete,
-
-    handleSubmitForCreate,
-    handleSubmitForUpdate,
-
-    resetCreateForm,
+    handleSubmit,
   }
 }

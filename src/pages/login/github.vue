@@ -9,6 +9,12 @@
 </template>
 
 <script setup lang="ts">
+definePage({
+  meta: {
+    layout: 'none',
+  },
+})
+
 import { githubLogin } from '@/api/user'
 import {
   setAccessToken,
@@ -16,12 +22,10 @@ import {
   getOAuthCsrfToken,
   removeOAuthCsrfToken,
 } from '@/utils/auth'
-import { toast } from 'li-daisy'
+import { Message } from 'li-daisy'
 import { onMounted } from 'vue'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-
-import { homePage, loginPage } from '@/router/const'
 
 const route = useRoute()
 
@@ -33,23 +37,19 @@ const stateQueryParam = computed(() => route.query.state as string | undefined)
 
 const togoLoginIndex = () => {
   router.push({
-    name: homePage,
+    name: '/home',
   })
 }
 
 const handleGithubLogin = async () => {
   if (!code.value) {
-    toast.warn({
-      title: '非法登录方式',
-      message: '请正常登录!',
-    })
-
+    Message.warning('请正常登录')
     togoLoginIndex()
     return
   }
 
   let decodedState: { csrf?: string; redirect?: string } = {}
-  let finalRedirectPath = '/' // 默认重定向路径
+  let finalRedirectPath = '/home' // 默认重定向路径
 
   if (stateQueryParam.value) {
     decodedState = JSON.parse(decodeURIComponent(stateQueryParam.value))
@@ -60,11 +60,8 @@ const handleGithubLogin = async () => {
     removeOAuthCsrfToken()
 
     if (!decodedState.csrf || decodedState.csrf !== csrfToken) {
-      toast.error({
-        title: '危险操作',
-        message: '无效的 state 参数，可能存在 CSRF 风险。',
-      })
-      router.push({ name: loginPage })
+      Message.error('无效的 state 参数，可能存在 CSRF 风险。')
+      router.push({ name: '/login/' })
       return
     }
 
@@ -75,21 +72,17 @@ const handleGithubLogin = async () => {
 
     // 3. 后端交互 获取token
     await githubLogin(code.value as string)
-      .then((res) => {
-        const data = res
-        setAccessToken(data.access_token)
-        setRefreshToken(data.refresh_token)
+      .then(res => {
+        setAccessToken(res.data.access_token)
+        setRefreshToken(res.data.refresh_token)
+
         router.push(finalRedirectPath)
       })
-      .catch((err) => {
-        router.push({ name: loginPage })
-        toast.error(err)
+      .catch(() => {
+        router.push({ name: '/login/' })
       })
   } else {
-    toast.error({
-      title: '危险操作',
-      message: '当前登录方式不安全!',
-    })
+    Message.warning('当前登录方式不安全!')
     togoLoginIndex()
     return
   }

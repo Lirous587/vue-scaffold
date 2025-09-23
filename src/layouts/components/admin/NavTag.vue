@@ -16,7 +16,7 @@
         <span class="font-bold text-sm">
           {{ tag.title }}
         </span>
-        <div @click.stop="handleDelete(index)" v-if="tag.path !== '/home'">
+        <div v-if="tag.path !== '/'" @click.stop="handleDelete(index)">
           <XMarkIcon class="h-5 w-5 btn btn-ghost btn-circle p-0.5 hover:text-secondary-content" />
         </div>
       </div>
@@ -31,7 +31,7 @@
 
         <ul
           tabindex="0"
-          class="dropdown-content menu bg-base-100 rounded-box z-1 w p-2 shadow-sm space-y-1 w-30"
+          class="dropdown-content menu bg-base-100 rounded-box w p-2 shadow-sm space-y-1 w-30"
         >
           <li><span>关闭其他</span></li>
           <li><span>关闭全部</span></li>
@@ -57,8 +57,10 @@ const tags = computed(() => store.navs)
 
 const handleDelete = async (index: number) => {
   const deleteOne = store.navs[index]
+  if (!deleteOne) return
+
   if (deleteOne.path === nowPath.value) {
-    await router.push('/home')
+    await router.push('/')
   }
   store.deleteIndex(index)
 }

@@ -6,10 +6,6 @@
           <IconGithub />
         </a>
       </div>
-
-      <RouterLink to="/signup" class="btn btn-sm btn-outline flex items-center justify-center"
-        >注册</RouterLink
-      >
     </header>
     <main class="flex-1 flex flex-col justify-center items-center gap-y-6 px-5">
       <h2 class="text-xl font-bold font-mono">Log in to Li-Admin</h2>
@@ -23,8 +19,6 @@
       </a>
 
       <div class="w-[320px] h-[1px] bg-base-300 my-2"></div>
-
-      <RouterLink to="/login/email" class="hover:link link-info">使用邮箱登录 &rarr;</RouterLink>
     </main>
 
     <div class="h-[72px] w-full flex justify-end items-center">
@@ -34,7 +28,12 @@
 </template>
 
 <script setup lang="ts">
-import { gitub_login_config } from '@/config'
+definePage({
+  meta: {
+    layout: 'none',
+  },
+})
+import { github_login_config } from '@/config'
 import IconGithub from '@/components/Icon/github.vue'
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
@@ -62,8 +61,8 @@ const githubState = computed(() => {
 
 const githubAuthUrl = computed(() => {
   const params = new URLSearchParams({
-    client_id: gitub_login_config.client_id,
-    redirect_uri: gitub_login_config.redirect_uri,
+    client_id: github_login_config.client_id,
+    redirect_uri: github_login_config.redirect_uri,
     scope: 'user:email',
     state: githubState.value,
   })

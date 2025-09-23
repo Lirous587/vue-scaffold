@@ -1,4 +1,4 @@
-export const gitub_login_config = {
-  client_id: 'Ov23liIHP39LwVATcNAO',
-  redirect_uri: 'http://localhost:5173/login/github',
+export const github_login_config = {
+  client_id: import.meta.env.VITE_GITHUB_CLIENT_ID,
+  redirect_uri: import.meta.env.VITE_GITHUB_REDIRECT_URI,
 }

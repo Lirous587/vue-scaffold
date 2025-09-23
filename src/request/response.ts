@@ -1,3 +1,5 @@
+import type { AxiosError } from 'axios'
+
 export interface SuccessResponse<T = any> {
   // 状态码
   httpStatus: number
@@ -19,7 +21,7 @@ export interface ErrorResponse {
 }
 
 export const isValidApiResponse = (
-  data: any,
+  data: any
 ): data is { code: number; message?: string; data?: any } => {
   return data && typeof data === 'object' && typeof data.code === 'number'
 }
@@ -30,5 +32,11 @@ export const isValidErrorResponse = (data: any): data is ErrorResponse => {
     typeof data === 'object' &&
     typeof data.code === 'number' &&
     typeof data.message === 'string'
+  )
+}
+
+export const isTokenExpired = (error: AxiosError) => {
+  return (
+    error.response && isValidErrorResponse(error.response.data) && error.response.data.code === 1063
   )
 }

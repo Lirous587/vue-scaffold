@@ -1,7 +1,11 @@
 @import 'tailwindcss';
 @plugin "daisyui";
-@import "./daisyui.css";
+@import './daisyui.css';
+@import './custom.css';
 
+
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   interpolate-size: allow-keywords;

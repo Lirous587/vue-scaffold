@@ -8,15 +8,15 @@ export function throttle<T extends (...args: any[]) => any>(
   fn: T,
   delay: number = 200
 ): (...args: Parameters<T>) => ReturnType<T> | undefined {
-  let lastCall = 0;
+  let lastCall = 0
   return function (this: any, ...args: Parameters<T>) {
-    const now = new Date().getTime();
+    const now = new Date().getTime()
     if (now - lastCall < delay) {
-      return; // 如果距离上次调用时间小于delay，则不执行
+      return // 如果距离上次调用时间小于delay，则不执行
     }
-    lastCall = now;
-    return fn.apply(this, args);
-  };
+    lastCall = now
+    return fn.apply(this, args)
+  }
 }
 
 /**
@@ -29,12 +29,11 @@ export function debounce<T extends (...args: any[]) => any>(
   fn: T,
   delay: number = 200
 ): (...args: Parameters<T>) => void {
-  let timer: number | null = null;
+  let timer: number | null = null
   return function (this: any, ...args: Parameters<T>) {
-    const context = this;
-    if (timer) clearTimeout(timer);
+    if (timer) clearTimeout(timer)
     timer = setTimeout(() => {
-      fn.apply(context, args);
-    }, delay);
-  };
+      fn.apply(this, args)
+    }, delay)
+  }
 }

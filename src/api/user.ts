@@ -1,24 +1,29 @@
-import axios from '@/axios'
+import request from '@/request'
 
-interface UserPayload {
-  id: string
-}
-
-export interface GithubLoginData {
+export interface LoginRes {
   access_token: string
   refresh_token: string
-  payload: UserPayload
 }
 
 // api/user/auth/github
-export const githubLogin = (code: string): Promise<GithubLoginData> => {
-  return axios.post('/v1/user/auth/github', {
+export const githubLogin = (code: string) => {
+  return request.post<LoginRes>('/api/v1/user/auth/github', {
     code: code,
   })
 }
 
 export const validateAuth = () => {
-  return axios.post('/v1/user/auth')
+  return request.post('/api/v1/user/auth')
 }
 
-export const getMunus = () => {}
+export const refreshToken = (refreshToken: string) => {
+  return request.post<LoginRes>(
+    '/api/v1/user/refresh_token',
+    {},
+    {
+      headers: {
+        'X-Refresh-Token': refreshToken,
+      },
+    }
+  )
+}

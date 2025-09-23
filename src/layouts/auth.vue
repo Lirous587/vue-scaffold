@@ -1,6 +1,8 @@
 <template>
-  <ThemeSwitch light-theme="light" dark-theme="dark" class="sr-only" />
-  <router-view />
+  <div>
+    <ThemeSwitch class="!sr-only" />
+    <router-view />
+  </div>
 </template>
 
 <script setup lang="ts">

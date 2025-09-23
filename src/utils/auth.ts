@@ -17,8 +17,8 @@ export const removeAccessToken = () => {
   cookies.remove(ACCESS_TOKEN_KEy)
 }
 
-export const setRefreshToken = (token: string) => {
-  cookies.set(REFRESH_TOKEN_KEY, token)
+export const setRefreshToken = (refreshToken: string) => {
+  cookies.set(REFRESH_TOKEN_KEY, refreshToken)
 }
 
 export const getRefreshToken = (): string | undefined => {

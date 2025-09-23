@@ -1,20 +1,20 @@
 // 时间工具
-export * from "./timer";
+export * from './timer'
 
 // 函数工具
-export * from "./function";
+export * from './function'
 
 // 数组工具
-export * from "./array";
+export * from './array'
 
 // 对象工具
-export * from "./object";
+export * from './object'
 
 // URL工具
-export * from "./url";
+export * from './url'
 
 // 设备检测
-export * from "./device";
+export * from './device'
 
 // 随机工具
-export * from "./random";
+export * from './random'

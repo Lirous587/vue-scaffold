@@ -68,7 +68,7 @@
 
       <!-- 操作按钮 -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <button @click="goHome" class="btn btn-primary btn-lg gap-2">
+        <button class="btn btn-primary btn-lg gap-2" @click="goHome">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-6 w-6"
@@ -86,7 +86,7 @@
           回到首页
         </button>
 
-        <button @click="goBack" class="btn btn-ghost btn-lg gap-2">
+        <button class="btn btn-ghost btn-lg gap-2" @click="goBack">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-6 w-6"
@@ -124,13 +124,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+definePage({
+  meta: {
+    layout: 'none',
+  },
+})
+
 import { useRouter } from 'vue-router'
-import { homePage } from '@/router/const'
 const router = useRouter()
 
 const goHome = () => {
-  router.push({ name: homePage })
+  router.push({ name: '/home' })
 }
 
 const goBack = () => {

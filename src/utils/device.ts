@@ -1,24 +1,24 @@
 /**
  * 设备类型
  */
-export type DeviceType = "mobile" | "ipad" | "computer";
+export type DeviceType = 'mobile' | 'ipad' | 'computer'
 
 /**
  * 获取当前设备类型
  * @returns 设备类型
  */
 export function getNowEquipment(): DeviceType {
-  if (typeof window === "undefined") return "computer";
+  if (typeof window === 'undefined') return 'computer'
 
-  const windowWidth = window.innerWidth;
+  const windowWidth = window.innerWidth
 
   if (windowWidth < 768) {
-    return "mobile";
+    return 'mobile'
   } else if (windowWidth >= 768 && windowWidth < 992) {
-    return "ipad";
+    return 'ipad'
   }
 
-  return "computer";
+  return 'computer'
 }
 
 /**
@@ -26,7 +26,7 @@ export function getNowEquipment(): DeviceType {
  * @returns 是否为移动设备
  */
 export function isMobile(): boolean {
-  return getNowEquipment() === "mobile";
+  return getNowEquipment() === 'mobile'
 }
 
 /**
@@ -34,5 +34,5 @@ export function isMobile(): boolean {
  * @returns 是否为平板设备
  */
 export function isTablet(): boolean {
-  return getNowEquipment() === "ipad";
+  return getNowEquipment() === 'ipad'
 }
