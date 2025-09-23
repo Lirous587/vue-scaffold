@@ -5,17 +5,3 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-:root {
-  interpolate-size: allow-keywords;
-}
-
-::details-content {
-  content-visibility: visible;
-  height: 0;
-  transition: 0.35s;
-  overflow: hidden;
-}
-
-details[open]::details-content {
-  height: auto;
-}
