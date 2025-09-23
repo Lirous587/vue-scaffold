@@ -18,6 +18,11 @@
 
 ## 📦 主要依赖
 
+- **核心依赖**
+  - `vue` `vue-router` `pinia`
+  - `tailwindcss` `daisyui` `li-daisy`
+  - `axios` `nprogress` `md-editor-v3` `cropperjs` `uuid` `universal-cookie` `yup`
+
 > 如果使用了 `pnpm gonew` 那将仅需保留以下核心依赖
 
 - `vue` `vue-router` `pinia`
@@ -36,11 +41,6 @@
   > ```
   >
   > 以及删除其下的 `daisyui.css` 这一文件
-
-- **核心依赖**
-  - `vue` `vue-router` `pinia`
-  - `tailwindcss` `daisyui` `li-daisy`
-  - `axios` `nprogress` `md-editor-v3` `cropperjs` `uuid` `universal-cookie` `yup`
 
 ---
 
