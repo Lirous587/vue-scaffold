@@ -2,7 +2,7 @@
 
 > 本项目为自用极简 Vue3 + Vite + Pinia + TailwindCSS 后台管理系统脚手架 (当然也可以用于做无需SRR的C端系统等)
 >
-> 推荐使用 `pnpm gonew` 脚本一键重置，快速获得干净的起步环境。
+> 推荐使用 `pnpm gonew` 脚本一键重置，快速获得干净的起步环境
 
 ---
 
@@ -100,8 +100,8 @@ src/
 
 ## 🧹 关于 `pnpm gonew`
 
-- 执行 `pnpm gonew` 会自动清理 `src` 目录下除 `assets/`、`App.vue`、`main.ts` 外的所有内容，并重置 `App.vue` 为最基础模板。
-- 适合用来快速获得一个干净的项目骨架，便于自定义开发。
+- 执行 `pnpm gonew` 会自动清理 `src` 目录下除 `assets/`、`App.vue`、`main.ts` 外的所有内容，并重置 `App.vue` 为最基础模板
+- 适合用来快速获得一个干净的项目骨架，便于自定义开发
 
 ---
 
