@@ -19,16 +19,11 @@ declare module 'vue-router/auto-routes' {
    */
   export interface RouteNamedMap {
     '/404': RouteRecordInfo<'/404', '/404', Record<never, never>, Record<never, never>>,
-    '/article/': RouteRecordInfo<'/article/', '/article', Record<never, never>, Record<never, never>>,
-    '/friend/': RouteRecordInfo<'/friend/', '/friend', Record<never, never>, Record<never, never>>,
     '/home': RouteRecordInfo<'/home', '/home', Record<never, never>, Record<never, never>>,
     '/img/': RouteRecordInfo<'/img/', '/img', Record<never, never>, Record<never, never>>,
     '/img/recycle': RouteRecordInfo<'/img/recycle', '/img/recycle', Record<never, never>, Record<never, never>>,
-    '/label/': RouteRecordInfo<'/label/', '/label', Record<never, never>, Record<never, never>>,
     '/login/': RouteRecordInfo<'/login/', '/login', Record<never, never>, Record<never, never>>,
     '/login/github': RouteRecordInfo<'/login/github', '/login/github', Record<never, never>, Record<never, never>>,
-    '/record/maxim': RouteRecordInfo<'/record/maxim', '/record/maxim', Record<never, never>, Record<never, never>>,
-    '/record/moment': RouteRecordInfo<'/record/moment', '/record/moment', Record<never, never>, Record<never, never>>,
   }
 
   /**
@@ -46,14 +41,6 @@ declare module 'vue-router/auto-routes' {
       routes: '/404'
       views: never
     }
-    'src/pages/article/index.vue': {
-      routes: '/article/'
-      views: never
-    }
-    'src/pages/friend/index.vue': {
-      routes: '/friend/'
-      views: never
-    }
     'src/pages/home.vue': {
       routes: '/home'
       views: never
@@ -66,24 +53,12 @@ declare module 'vue-router/auto-routes' {
       routes: '/img/recycle'
       views: never
     }
-    'src/pages/label/index.vue': {
-      routes: '/label/'
-      views: never
-    }
     'src/pages/login/index.vue': {
       routes: '/login/'
       views: never
     }
     'src/pages/login/github.vue': {
       routes: '/login/github'
-      views: never
-    }
-    'src/pages/record/maxim.vue': {
-      routes: '/record/maxim'
-      views: never
-    }
-    'src/pages/record/moment.vue': {
-      routes: '/record/moment'
       views: never
     }
   }

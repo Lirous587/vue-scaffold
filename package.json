@@ -1,5 +1,5 @@
 {
-  "name": "blog-admin",
+  "name": "vue-scaffold",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -11,7 +11,8 @@
     "lint": "eslint \"src/**/*.{js,ts,vue}\" --fix",
     "format": "prettier --write src/",
     "type-check": "vue-tsc --build",
-    "prepare": "husky"
+    "prepare": "husky",
+    "gonew": "jiti src/scripts/gonew.js"
   },
   "dependencies": {
     "@heroicons/vue": "^2.2.0",
