@@ -25,10 +25,7 @@
       </Popover>
     </li>
 
-    <div
-      v-if="index === 0 || index === 2 || index === 4 || index === 5"
-      class="h-5 flex items-center w-full"
-    >
+    <div v-if="index === 0" class="h-5 flex items-center w-full">
       <div class="bg-base-300 w-full h-[1px]"></div>
     </div>
   </div>
@@ -37,16 +34,7 @@
 <script setup lang="ts">
 import { computed, ref, type Component } from 'vue'
 import { Popover } from 'li-daisy'
-import {
-  HomeModernIcon,
-  BookmarkIcon,
-  TagIcon,
-  PlayCircleIcon,
-  HeartIcon,
-  FaceSmileIcon,
-  PhotoIcon,
-  TrashIcon,
-} from '@heroicons/vue/24/outline'
+import { HomeModernIcon, PhotoIcon, TrashIcon } from '@heroicons/vue/24/outline'
 
 import { useRoute, useRouter } from 'vue-router'
 import { useMyAsideBarStore } from '@/stores/asideBar'
@@ -66,31 +54,6 @@ const menus = ref<asideItem[]>([
     title: '主页',
     path: '/home',
     Icon: HomeModernIcon,
-  },
-  {
-    title: '文章',
-    path: '/article',
-    Icon: BookmarkIcon,
-  },
-  {
-    title: '标签',
-    path: '/label',
-    Icon: TagIcon,
-  },
-  {
-    title: '格言',
-    path: '/record/maxim',
-    Icon: HeartIcon,
-  },
-  {
-    title: '瞬间',
-    path: '/record/moment',
-    Icon: PlayCircleIcon,
-  },
-  {
-    title: '友链',
-    path: '/friend',
-    Icon: FaceSmileIcon,
   },
   {
     title: '图库',
