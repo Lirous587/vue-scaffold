@@ -1,6 +1,6 @@
 # vue-scaffold 极简手脚架
 
-> 本项目为自用极简 Vue3 + Vite + Pinia + TailwindCSS 后台管理系统脚手架 (当然也可以用于做无需SRR的C端系统)
+> 本项目为自用极简 Vue3 + Vite + Pinia + TailwindCSS 后台管理系统脚手架 (当然也可以用于做无需SRR的C端系统等)
 > 推荐使用 `pnpm gonew` 脚本一键重置，快速获得干净的起步环境。
 
 ---
@@ -70,8 +70,8 @@ src/
 1. **克隆项目**
 
    ```bash
-   git clone https://github.com/Lirous587/vue-admin.git
-   cd vue-admin
+   git clone https://github.com/Lirous587/vue-scaffold.git
+   cd vue-scaffold
    ```
 
 2. **安装依赖**
