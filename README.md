@@ -29,16 +29,16 @@
 - `tailwindcss`
 - `axios`
 
-  > 若执意需要一个完全干净的手脚架可以删除非必要依赖
-  >
-  > 注意 `li-daisy` 为作者自主开发的组件库，目的是完善 `daisyui` 中不足的功能，`若无使用兴趣`，请删除 `assets/css` 下的 `tailwind.css` 中的这两行
-  >
-  > ```css
-  > @plugin "daisyui";
-  > @import './daisyui.css';
-  > ```
-  >
-  > 以及删除其下的 `daisyui.css` 这一文件
+> 若执意需要一个完全干净的手脚架可以删除非必要依赖
+>
+> 注意 `li-daisy` 为作者自主开发的组件库，目的是完善 `daisyui` 中不足的功能，`若无使用兴趣`，请删除 `assets/css` 下的 `tailwind.css` 中的这两行
+>
+> ```css
+> @plugin "daisyui";
+> @import './daisyui.css';
+> ```
+>
+> 以及删除其下的 `daisyui.css` 这一文件
 
 ---
 
@@ -68,48 +68,49 @@ src/
 
 1. 新建目录
 
-```bash
-mkdir demo
-cd demo
-```
+   ```bash
+   mkdir demo
+   cd demo
+   ```
 
 2. 克隆项目
 
-```bash
- git clone https://github.com/Lirous587/vue-scaffold.git
-```
+   ```bash
+   git clone https://github.com/Lirous587/vue-scaffold.git
+   ```
 
 3. 移动目录 并删除git记录
 
-```bash
-robocopy vue-scaffold . /E /XD .git
-```
+   ```bash
+   robocopy vue-scaffold . /E /XD .git
+   ```
 
 4. 删除clone目录
 
-```bash
-Remove-Item vue-scaffold -Recurse -Force
-```
+   ```bash
+   Remove-Item vue-scaffold -Recurse -Force
+   ```
 
 5. 安装依赖
 
-```bash
-pnpm i
-```
+   ```bash
+   pnpm i
+   ```
 
 6. 重置项目
-   > 若不希望有任何杂七杂八的内容，可以执行脚本 `pnpm gonew`  
+   > 若不希望有任何杂七杂八的内容，可以执行脚本 `pnpm gonew`
+   >
    > 这将仅仅保留**项目基础结构**以及**基础 css 文件**
 
-```bash
-pnpm gonew
-```
+   ```bash
+   pnpm gonew
+   ```
 
 7. 启动开发服务器
 
-```bash
-pnpm run dev
-```
+   ```bash
+   pnpm run dev
+   ```
 
 ---
 
