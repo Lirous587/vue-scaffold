@@ -29,8 +29,6 @@
 - `tailwindcss`
 - `axios`
 
-  > 但 `pnpm gonew` 脚本不会去做这一处理，因为其余依赖是值得尝试的
-  >
   > 若执意需要一个完全干净的手脚架可以删除非必要依赖
   >
   > 注意 `li-daisy` 为作者自主开发的组件库，目的是完善 `daisyui` 中不足的功能，`若无使用兴趣`，请删除 `assets/css` 下的 `tailwind.css` 中的这两行
@@ -68,33 +66,50 @@ src/
 
 ## 🚀 快速开始
 
-1. **克隆项目**
+1. 新建目录
 
-   ```bash
-   git clone https://github.com/Lirous587/vue-scaffold.git
-   cd vue-scaffold
-   ```
+```bash
+mkdir demo
+cd demo
+```
 
-2. **安装依赖**
+2. 克隆项目
 
-   ```bash
-   pnpm i
-   ```
+```bash
+ git clone https://github.com/Lirous587/vue-scaffold.git
+```
 
-3. **重置项目**
+3. 移动目录 并删除git记录
 
+```bash
+robocopy vue-scaffold . /E /XD .git
+```
+
+4. 删除clone目录
+
+```bash
+Remove-Item vue-scaffold -Recurse -Force
+```
+
+5. 安装依赖
+
+```bash
+pnpm i
+```
+
+6. 重置项目
    > 若不希望有任何杂七杂八的内容，可以执行脚本 `pnpm gonew`  
    > 这将仅仅保留**项目基础结构**以及**基础 css 文件**
 
-   ```bash
-   pnpm gonew
-   ```
+```bash
+pnpm gonew
+```
 
-4. **启动开发服务器**
+7. 启动开发服务器
 
-   ```bash
-   pnpm run dev
-   ```
+```bash
+pnpm run dev
+```
 
 ---
 
@@ -112,6 +127,28 @@ src/
 
 ---
 
-## 📝 License
+## 📄 许可证
 
-MIT
+本项目采用 MIT 许可证 - 详情参见 [LICENSE](LICENSE) 文件
+
+## 🙏 致谢
+
+> 以下排名不分先后
+
+- [Vue](https://github.com/vuejs/vue)
+- [Vite](https://github.com/vitejs/vite)
+- [Vue Router](https://github.com/vuejs/vue-router)
+- [Pinia](https://github.com/vuejs/pinia)
+- [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss)
+- [DaisyUI](https://github.com/saadeghi/daisyui)
+- [li-daisy](https://github.com/Lirous587/li-daisy)
+- [Axios](https://github.com/axios/axios)
+- [NProgress](https://github.com/rstacruz/nprogress)
+- [md-editor-v3](https://github.com/imzbf/md-editor-v3)
+- [Cropper.js](https://github.com/fengyuanchen/cropperjs
+- [Yup](https://github.com/jquense/yup)
+- [TypeScript](https://github.com/microsoft/TypeScript)
+
+---
+
+⭐️ 如果这个项目对你有帮助，请给它一个 start！
